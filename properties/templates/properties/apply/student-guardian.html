@@ -1,0 +1,693 @@
+{% extends "_application.html" %}
+{% load static %}
+
+
+{% block apply_form %}
+<div class="transition-all duration-300">
+    <form method="post" class="form-primary add-property-form bg-white text-sm lg:text-base">
+        {% csrf_token %}
+        <div>
+            <h5 class="text-sm md:text-15px lg:text-base font-bold leading-1.3 text-heading-color mb-15px">
+                <span class="leading-1.3 md:leading-1.3 lg:leading-1.3">
+                    Person Responsible For The Account </span>
+            </h5>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-30px mb-30px">
+                <div class="relative block">
+
+                    <select class="selectize" name="{{form.account_handler_title.html_name}}"
+                        value="{% if form.account_handler_title.value %}{{form.account_handler_title.value}}{% endif %}">
+                        <option value {% if form.account_handler_title.value == "" %}selected{% endif %}>*Title</option>
+                        <option {% if form.account_handler_title.value == "Mr" %}selected{% endif %} value="Mr">Mr</option>
+
+                        <option {% if form.account_handler_title.value == "Mrs" %}selected{% endif %} value="Mrs">Mrs</option>
+
+                        <option {% if form.account_handler_title.value == "Ms" %}selected{% endif %} value="Ms">Ms</option>
+
+                        <option {% if form.account_handler_title.value == "Dr" %}selected{% endif %} value="Dr">Dr</option>
+
+                        <option {% if form.account_handler_title.value == "Prof" %}selected{% endif %} value="Prof">Prof.</option>
+                    </select>
+                </div>
+                <div class="relative">
+                    <input type="text" placeholder="*Initials" name="{{form.account_handler_initials.html_name}}"
+                        value="{% if form.account_handler_initials.value %}{{form.account_handler_initials.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                    {% if form.account_handler_initials.errors %}
+                    <span class="text-[11px] text-red-500 block font-normal lowercase">{{form.account_handler_initials.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+                <div class="relative">
+                    <input type="text" placeholder="*First Name" name="{{form.account_handler_first_names.html_name}}"
+                        value="{% if form.account_handler_first_names.value %}{{form.account_handler_first_names.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                    {% if form.account_handler_first_names.errors %}
+                        <span class="text-[11px] text-red-500 block font-normal lowercase">{{form.account_handler_first_names.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+
+                <div class="relative">
+                    <input type="text" placeholder="*Last Name" name="{{form.account_handler_last_name.html_name}}"
+                        value="{% if form.account_handler_last_name.value %}{{form.account_handler_last_name.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                    {% if form.account_handler_last_name.errors %}
+                    <span class="text-[11px] text-red-500 block font-normal lowercase">{{form.account_handler_last_name.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+                <div class="relative">
+                    <input type="text" placeholder="Preferred Name" name="{{form.account_handler_prefered_name.html_name}}"
+                        value="{% if form.account_handler_prefered_name.value %}{{form.account_handler_prefered_name.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                    {% if form.account_handler_prefered_name.errors %}
+                        <span class="text-[11px] text-red-500 block font-normal lowercase">{{form.account_handler_prefered_name.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+                <div class="relative block">
+                    <select class="selectize" name="{{form.account_handler_relationship.html_name}}"
+                        value="{% if form.account_handler_relationship.value %}{{form.account_handler_relationship.value}}{% endif %}">
+                        <option value selected>*Relationship</option>
+                        <option value="OTHER">Other</option>
+                        
+                        <option value="WIFE">Wife</option>
+                        
+                        <option value="HUSBAND">Husband</option>
+                        
+                        <option value="DAUGHTER">Daughter</option>
+                        
+                        <option value="SON">Son</option>
+                        
+                        <option value="MOTHER">Mother</option>
+                        
+                        <option value="FATHER">Father</option>
+                        
+                        <option value="STEPMOTHER">Step-mother</option>
+                        
+                        <option value="STEPFATHER">Step-father</option>
+                        
+                        <option value="STEPBROTHER">Step-Brother</option>
+                        
+                        <option value="STEPSISTER">Step-Sister</option>
+                        
+                        <option value="GRANDMOTHER">Grandmother</option>
+                        
+                        <option value="GRANDFATHER">Grandfather</option>
+                        
+                        <option value="BROTHER">Brother</option>
+                        
+                        <option value="SISTER">Sister</option>
+                        
+                        <option value="COUSIN">Cousin</option>
+                        
+                        <option value="AUNT">Aunt</option>
+                        
+                        <option value="UNCLE">Uncle</option>
+                        
+                        <option value="NEPHEW">Nephew</option>
+                        
+                        <option value="NIECE">Niece</option>
+                    </select>
+                    
+                    {% if form.account_handler_relationship.errors %}
+                        <span class="text-[11px] text-red-500 block font-normal lowercase">{{form.account_handler_relationship.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+                
+
+                <div class="relative">
+                    <input type="number" placeholder="ID Number" name="{{form.account_handler_id_number.html_name}}"
+                        value="{% if form.account_handler_id_number.value %}{{form.account_handler_id_number.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                    {% if form.account_handler_id_number.errors %}
+                    <span class="text-[11px] text-red-500 block font-normal lowercase">{{form.account_handler_id_number.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+                <div class="relative">
+                    <input type="tel" placeholder="Tel. (work)" name="{{form.account_handler_work_tel.html_name}}"
+                        value="{% if form.account_handler_work_tel.value %}{{form.account_handler_work_tel.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                    {% if form.account_handler_work_tel.errors %}
+                    <span class="text-[11px] text-red-500 block font-normal lowercase">{{form.account_handler_work_tel.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+                <div class="relative">
+                    <input type="tel" placeholder="*Cell Number" name="{{form.account_handler_phone.html_name}}"
+                        value="{% if form.account_handler_phone.value %}{{form.account_handler_phone.value}}{% endif %}" required
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                    {% if form.account_handler_phone.errors %}
+                    <span class="text-[11px] text-red-500 block font-normal lowercase">{{form.account_handler_phone.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+                <div class="relative">
+                    <input type="email" placeholder="*Email" name="{{form.account_handler_email.html_name}}" required
+                        value="{% if form.account_handler_email.value %}{{form.account_handler_email.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                    {% if form.account_handler_email.errors %}
+                    <span class="text-[11px] text-red-500 block font-normal lowercase">{{form.account_handler_email.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+                <div class="relative block">
+                    <select class="selectize" name="{{form.account_handler_employment_status.html_name}}"
+                        value="{% if form.account_handler_employment_status.value %}{{form.account_handler_employment_status.value}}{% endif %}">
+                        <option value {% if form.account_handler_title.value == "" %}selected{% endif %}>*Employment Status</option>
+                        <option {% if form.account_handler_title.value == "EMPLOYEED" %}selected{% endif %} value="EMPLOYEED">Employeed</option>
+                        
+                        <option {% if form.account_handler_title.value == "UNEMPLOYEED" %}selected{% endif %} value="UNEMPLOYEED">Unemployeed</option>
+                        
+                        <option {% if form.account_handler_title.value == "SELF_EMPLOYEED" %}selected{% endif %} value="SELF_EMPLOYEED">Self-employeed</option>
+                        
+                        <option {% if form.account_handler_title.value == "OTHER" %}selected{% endif %} value="OTHER">Other</option>
+                
+                    </select>
+                    {% if form.account_handler_employment_status.errors %}
+                    <span class="text-[11px] text-red-500 block font-normal lowercase">{{form.account_handler_employment_status.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+                <div class="relative">
+                    <input type="text" placeholder="Place Employed" name="{{form.account_handler_place_of_work.html_name}}"
+                        value="{% if form.account_handler_place_of_work.value %}{{form.account_handler_place_of_work.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                    {% if form.account_handler_place_of_work.errors %}
+                    <span class="text-[11px] text-red-500 block font-normal lowercase">{{form.account_handler_place_of_work.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+                <div class="relative">
+                    <input type="text" placeholder="*Address e.g Ward 28, Block A21, Umthatha" name="{{form.account_handler_address.html_name}}" required
+                        value="{% if form.account_handler_address.value %}{{form.account_handler_address.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                    {% if form.account_handler_address.errors %}
+                    <span
+                        class="text-[11px] text-red-500 block font-normal lowercase">{{form.account_handler_address.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+        <div>
+            <h5 class="text-sm md:text-15px lg:text-base font-bold leading-1.3 text-heading-color mb-15px">
+                <span class="leading-1.3 md:leading-1.3 lg:leading-1.3">
+                    Father Or Guardian </span>
+            </h5>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-30px mb-30px">
+                <div class="relative block">
+            
+                    <select class="selectize" name="{{form2.guardian_or_father_title.html_name}}"
+                        value="{% if form2.guardian_or_father_title.value %}{{form2.guardian_or_father_title.value}}{% endif %}">
+                        <option value selected>*Title</option>
+                        <option value="Mr">Mr</option>
+            
+                        <option value="Mrs">Mrs</option>
+            
+                        <option value="Ms">Ms</option>
+            
+                        <option value="Dr">Dr</option>
+            
+                        <option value="Prof">Prof.</option>
+                    </select>
+                    {% if form2.guardian_or_father_title.errors %}
+                    <span
+                        class="text-[11px] text-red-500 block font-normal lowercase">{{form2.guardian_or_father_title.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+                <div class="relative">
+                    <input type="text" placeholder="*Initials" name="{{form2.guardian_or_father_initials.html_name}}"
+                        value="{% if form2.guardian_or_father_initials.value %}{{form2.guardian_or_father_initials.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                    {% if form2.guardian_or_father_initials.errors %}
+                    <span
+                        class="text-[11px] text-red-500 block font-normal lowercase">{{form2.guardian_or_father_initials.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+                <div class="relative">
+                    <input type="text" placeholder="*First Name" name="{{form2.guardian_or_father_first_names.html_name}}"
+                        value="{% if form2.guardian_or_father_first_names.value %}{{form2.guardian_or_father_first_names.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                    {% if form2.guardian_or_father_first_names.errors %}
+                    <span
+                        class="text-[11px] text-red-500 block font-normal lowercase">{{form2.guardian_or_father_first_names.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+            
+                <div class="relative">
+                    <input type="text" placeholder="*Last Name" name="{{form2.guardian_or_father_last_name.html_name}}"
+                        value="{% if form2.guardian_or_father_last_name.value %}{{form2.guardian_or_father_last_name.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                    {% if form2.guardian_or_father_last_name.errors %}
+                    <span
+                        class="text-[11px] text-red-500 block font-normal lowercase">{{form2.guardian_or_father_last_name.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+                <div class="relative">
+                    <input type="text" placeholder="Preferred Name" name="{{form2.guardian_or_father_prefered_name.html_name}}"
+                        value="{% if form2.guardian_or_father_prefered_name.value %}{{form2.guardian_or_father_prefered_name.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                    {% if form2.guardian_or_father_prefered_name.errors %}
+                    <span
+                        class="text-[11px] text-red-500 block font-normal lowercase">{{form2.guardian_or_father_prefered_name.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+                <div class="relative block">
+                    <select class="selectize" name="{{form2.guardian_or_father_relationship.html_name}}"
+                        value="{% if form2.guardian_or_father_relationship.value %}{{form2.guardian_or_father_relationship.value}}{% endif %}">
+                        <option value selected>*Relationship</option>
+                        <option value="OTHER">Other</option>
+            
+                        <option value="WIFE">Wife</option>
+            
+                        <option value="HUSBAND">Husband</option>
+            
+                        <option value="DAUGHTER">Daughter</option>
+            
+                        <option value="SON">Son</option>
+            
+                        <option value="MOTHER">Mother</option>
+            
+                        <option value="FATHER">Father</option>
+            
+                        <option value="STEPMOTHER">Step-mother</option>
+            
+                        <option value="STEPFATHER">Step-father</option>
+            
+                        <option value="STEPBROTHER">Step-Brother</option>
+            
+                        <option value="STEPSISTER">Step-Sister</option>
+            
+                        <option value="GRANDMOTHER">Grandmother</option>
+            
+                        <option value="GRANDFATHER">Grandfather</option>
+            
+                        <option value="BROTHER">Brother</option>
+            
+                        <option value="SISTER">Sister</option>
+            
+                        <option value="COUSIN">Cousin</option>
+            
+                        <option value="AUNT">Aunt</option>
+            
+                        <option value="UNCLE">Uncle</option>
+            
+                        <option value="NEPHEW">Nephew</option>
+            
+                        <option value="NIECE">Niece</option>
+                    </select>
+            
+                    {% if form2.guardian_or_father_relationship.errors %}
+                    <span
+                        class="text-[11px] text-red-500 block font-normal lowercase">{{form2.guardian_or_father_relationship.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+            
+            
+                <div class="relative">
+                    <input type="number" placeholder="ID Number" name="{{form2.guardian_or_father_id_number.html_name}}"
+                        value="{% if form2.guardian_or_father_id_number.value %}{{form2.guardian_or_father_id_number.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                    {% if form2.guardian_or_father_id_number.errors %}
+                    <span
+                        class="text-[11px] text-red-500 block font-normal lowercase">{{form2.guardian_or_father_id_number.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+                <div class="relative">
+                    <input type="tel" placeholder="Tel. (work)" name="{{form2.guardian_or_father_work_tel.html_name}}"
+                        value="{% if form2.guardian_or_father_work_tel.value %}{{form2.guardian_or_father_work_tel.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                    {% if form2.guardian_or_father_work_tel.errors %}
+                    <span
+                        class="text-[11px] text-red-500 block font-normal lowercase">{{form2.guardian_or_father_work_tel.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+                <div class="relative">
+                    <input type="tel" placeholder="*Cell Number" name="{{form2.guardian_or_father_phone.html_name}}"
+                        value="{% if form2.guardian_or_father_phone.value %}{{form2.guardian_or_father_phone.value}}{% endif %}"
+                        required
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                    {% if form2.guardian_or_father_phone.errors %}
+                    <span
+                        class="text-[11px] text-red-500 block font-normal lowercase">{{form2.guardian_or_father_phone.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+                <div class="relative">
+                    <input type="email" placeholder="*Email" name="{{form2.guardian_or_father_email.html_name}}" required
+                        value="{% if form2.guardian_or_father_email.value %}{{form2.guardian_or_father_email.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                    {% if form2.guardian_or_father_email.errors %}
+                    <span
+                        class="text-[11px] text-red-500 block font-normal lowercase">{{form2.guardian_or_father_email.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+                <div class="relative block">
+                    <select class="selectize" name="{{form2.guardian_or_father_employment_status.html_name}}"
+                        value="{% if form2.guardian_or_father_employment_status.value %}{{form2.guardian_or_father_employment_status.value}}{% endif %}">
+                        <option value selected>*Employment Status
+                        </option>
+                        <option  value="EMPLOYEED">
+                            Employeed</option>
+            
+                        <option  value="UNEMPLOYEED">
+                            Unemployeed</option>
+            
+                        <option 
+                            value="SELF_EMPLOYEED">Self-employeed</option>
+            
+                        <option value="OTHER">Other
+                        </option>
+            
+                    </select>
+                    {% if form2.guardian_or_father_employment_status.errors %}
+                    <span
+                        class="text-[11px] text-red-500 block font-normal lowercase">{{form2.guardian_or_father_employment_status.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+                <div class="relative">
+                    <input type="text" placeholder="Place Employed" name="{{form2.guardian_or_father_place_of_work.html_name}}"
+                        value="{% if form2.guardian_or_father_place_of_work.value %}{{form2.guardian_or_father_place_of_work.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                    {% if form2.guardian_or_father_place_of_work.errors %}
+                    <span
+                        class="text-[11px] text-red-500 block font-normal lowercase">{{form2.guardian_or_father_place_of_work.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+                <div class="relative">
+                    <input type="text" placeholder="*Address e.g Ward 28, Block A21, Umthatha"
+                        name="{{form2.guardian_or_father_address.html_name}}" required
+                        value="{% if form2.guardian_or_father_address.value %}{{form2.guardian_or_father_address.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                    {% if form2.guardian_or_father_address.errors %}
+                    <span
+                        class="text-[11px] text-red-500 block font-normal lowercase">{{form2.guardian_or_father_address.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+            
+            </div>
+        </div>
+
+        <div>
+            <h5 class="text-sm md:text-15px lg:text-base font-bold leading-1.3 text-heading-color mb-15px">
+                <span class="leading-1.3 md:leading-1.3 lg:leading-1.3">
+                    Mother Or Guardian </span>
+            </h5>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-30px mb-30px">
+                <div class="relative block">
+            
+                    <select class="selectize" name="{{form3.guardian_or_mother_title.html_name}}"
+                        value="{% if form3.guardian_or_mother_title.value %}{{form3.guardian_or_mother_title.value}}{% endif %}">
+                        <option value selected>*Title</option>
+                        <option value="Mr">Mr</option>
+            
+                        <option value="Mrs">Mrs</option>
+            
+                        <option value="Ms">Ms</option>
+            
+                        <option value="Dr">Dr</option>
+            
+                        <option value="Prof">Prof.</option>
+                    </select>
+                    {% if form3.guardian_or_mother_title.errors %}
+                    <span
+                        class="text-[11px] text-red-500 block font-normal lowercase">{{form3.guardian_or_mother_title.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+                <div class="relative">
+                    <input type="text" placeholder="*Initials" name="{{form3.guardian_or_mother_initials.html_name}}"
+                        value="{% if form3.guardian_or_mother_initials.value %}{{form3.guardian_or_mother_initials.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                    {% if form3.guardian_or_mother_initials.errors %}
+                    <span
+                        class="text-[11px] text-red-500 block font-normal lowercase">{{form3.guardian_or_mother_initials.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+                <div class="relative">
+                    <input type="text" placeholder="*First Name" name="{{form3.guardian_or_mother_first_names.html_name}}"
+                        value="{% if form3.guardian_or_mother_first_names.value %}{{form3.guardian_or_mother_first_names.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                    {% if form3.guardian_or_mother_first_names.errors %}
+                    <span
+                        class="text-[11px] text-red-500 block font-normal lowercase">{{form3.guardian_or_mother_first_names.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+            
+                <div class="relative">
+                    <input type="text" placeholder="*Last Name" name="{{form3.guardian_or_mother_last_name.html_name}}"
+                        value="{% if form3.guardian_or_mother_last_name.value %}{{form3.guardian_or_mother_last_name.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                    {% if form3.guardian_or_mother_last_name.errors %}
+                    <span
+                        class="text-[11px] text-red-500 block font-normal lowercase">{{form3.guardian_or_mother_last_name.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+                <div class="relative">
+                    <input type="text" placeholder="Preferred Name" name="{{form3.guardian_or_mother_prefered_name.html_name}}"
+                        value="{% if form3.guardian_or_mother_prefered_name.value %}{{form3.guardian_or_mother_prefered_name.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                    {% if form3.guardian_or_mother_prefered_name.errors %}
+                    <span
+                        class="text-[11px] text-red-500 block font-normal lowercase">{{form3.guardian_or_mother_prefered_name.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+                <div class="relative block">
+                    <select class="selectize" name="{{form3.guardian_or_mother_relationship.html_name}}"
+                        value="{% if form3.guardian_or_mother_relationship.value %}{{form3.guardian_or_mother_relationship.value}}{% endif %}">
+                        <option value selected>*Relationship</option>
+                        <option value="OTHER">Other</option>
+            
+                        <option value="WIFE">Wife</option>
+            
+                        <option value="HUSBAND">Husband</option>
+            
+                        <option value="DAUGHTER">Daughter</option>
+            
+                        <option value="SON">Son</option>
+            
+                        <option value="MOTHER">Mother</option>
+            
+                        <option value="FATHER">Father</option>
+            
+                        <option value="STEPMOTHER">Step-mother</option>
+            
+                        <option value="STEPFATHER">Step-father</option>
+            
+                        <option value="STEPBROTHER">Step-Brother</option>
+            
+                        <option value="STEPSISTER">Step-Sister</option>
+            
+                        <option value="GRANDMOTHER">Grandmother</option>
+            
+                        <option value="GRANDFATHER">Grandfather</option>
+            
+                        <option value="BROTHER">Brother</option>
+            
+                        <option value="SISTER">Sister</option>
+            
+                        <option value="COUSIN">Cousin</option>
+            
+                        <option value="AUNT">Aunt</option>
+            
+                        <option value="UNCLE">Uncle</option>
+            
+                        <option value="NEPHEW">Nephew</option>
+            
+                        <option value="NIECE">Niece</option>
+                    </select>
+            
+                    {% if form3.guardian_or_mother_relationship.errors %}
+                    <span
+                        class="text-[11px] text-red-500 block font-normal lowercase">{{form3.guardian_or_mother_relationship.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+            
+            
+                <div class="relative">
+                    <input type="number" placeholder="ID Number" name="{{form3.guardian_or_mother_id_number.html_name}}"
+                        value="{% if form3.guardian_or_mother_id_number.value %}{{form3.guardian_or_mother_id_number.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                    {% if form3.guardian_or_mother_id_number.errors %}
+                    <span
+                        class="text-[11px] text-red-500 block font-normal lowercase">{{form3.guardian_or_mother_id_number.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+                <div class="relative">
+                    <input type="tel" placeholder="Tel. (work)" name="{{form3.guardian_or_mother_work_tel.html_name}}"
+                        value="{% if form3.guardian_or_mother_work_tel.value %}{{form3.guardian_or_mother_work_tel.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                    {% if form3.guardian_or_mother_work_tel.errors %}
+                    <span
+                        class="text-[11px] text-red-500 block font-normal lowercase">{{form3.guardian_or_mother_work_tel.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+                <div class="relative">
+                    <input type="tel" placeholder="*Cell Number" name="{{form3.guardian_or_mother_phone.html_name}}"
+                        value="{% if form3.guardian_or_mother_phone.value %}{{form3.guardian_or_mother_phone.value}}{% endif %}"
+                        required
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                    {% if form3.guardian_or_mother_phone.errors %}
+                    <span
+                        class="text-[11px] text-red-500 block font-normal lowercase">{{form3.guardian_or_mother_phone.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+                <div class="relative">
+                    <input type="email" placeholder="*Email" name="{{form3.guardian_or_mother_email.html_name}}" required
+                        value="{% if form3.guardian_or_mother_email.value %}{{form3.guardian_or_mother_email.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                    {% if form3.guardian_or_mother_email.errors %}
+                    <span
+                        class="text-[11px] text-red-500 block font-normal lowercase">{{form3.guardian_or_mother_email.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+                <div class="relative block">
+                    <select class="selectize" name="{{form3.guardian_or_mother_employment_status.html_name}}"
+                        value="{% if form3.guardian_or_mother_employment_status.value %}{{form3.guardian_or_mother_employment_status.value}}{% endif %}">
+                        <option value selected>*Employment Status</option>
+                        <option value="EMPLOYEED">
+                            Employeed</option>
+            
+                        <option value="UNEMPLOYEED">
+                            Unemployeed</option>
+            
+                        <option value="SELF_EMPLOYEED">Self-employeed</option>
+            
+                        <option value="OTHER">Other</option>
+            
+                    </select>
+                    {% if form3.guardian_or_mother_employment_status.errors %}
+                    <span
+                        class="text-[11px] text-red-500 block font-normal lowercase">{{form3.guardian_or_mother_employment_status.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+                <div class="relative">
+                    <input type="text" placeholder="Place Employed" name="{{form3.guardian_or_mother_place_of_work.html_name}}"
+                        value="{% if form3.guardian_or_mother_place_of_work.value %}{{form3.guardian_or_mother_place_of_work.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                    {% if form3.guardian_or_mother_place_of_work.errors %}
+                    <span
+                        class="text-[11px] text-red-500 block font-normal lowercase">{{form3.guardian_or_mother_place_of_work.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+                <div class="relative">
+                    <input type="text" placeholder="*Address e.g Ward 28, Block A21, Umthatha"
+                        name="{{form3.guardian_or_mother_address.html_name}}" required
+                        value="{% if form3.guardian_or_mother_address.value %}{{form3.guardian_or_mother_address.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                    {% if form3.guardian_or_mother_address.errors %}
+                    <span
+                        class="text-[11px] text-red-500 block font-normal lowercase">{{form3.guardian_or_mother_address.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+            
+            </div>
+        </div>
+        <!-- submit -->
+        <div class="flex gap-5 justify-start">
+            <h5
+                class="uppercase text-sm md:text-base text-white relative group whitespace-nowrap font-normal mb-0 transition-all duration-300 border border-secondary-color hover:border-heading-color inline-block z-0">
+                <span
+                    class="inline-block absolute top-0 right-0 w-full h-full bg-secondary-color group-hover:bg-black -z-1 group-hover:w-0 transition-all duration-300"></span>
+                <a href="{% url 'properties:apply-student-details-with-id' property_slug=application.property.slug application_id=application.id %}"
+                    class="relative z-1 px-5 md:px-25px lg:px-10 py-10px md:py-15px lg:py-17px group-hover:text-heading-color leading-1.5 uppercase">
+                    Prev Step
+                </a>
+            </h5>
+            <h5
+                class="uppercase text-sm md:text-base text-white relative group whitespace-nowrap font-normal mb-0 transition-all duration-300 border border-secondary-color hover:border-heading-color inline-block z-0">
+                <span
+                    class="inline-block absolute top-0 right-0 w-full h-full bg-secondary-color group-hover:bg-black -z-1 group-hover:w-0 transition-all duration-300"></span>
+                <button type="submit" value="submit"
+                    class="relative z-1 px-5 md:px-25px lg:px-10 py-10px md:py-15px lg:py-17px group-hover:text-heading-color leading-1.5 uppercase">
+                    Next Step
+                </button>
+            </h5>
+        </div>
+    </form>
+</div>
+
+{% endblock apply_form %}

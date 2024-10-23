@@ -1,0 +1,332 @@
+{% extends "_base.html" %}
+{% load static %}
+
+
+{% block content %}
+<!-- banner section -->
+<section>
+    <!-- banner section -->
+    <div id="needs-bg-image-2"
+        class="w-full bg-[url('../img/bg/14.jpg')] bg-no-repeat bg-cover bg-center relative z-0 after:w-full after:h-full after:absolute after:top-0 after:left-0 after:bg-white after:bg-opacity-30 after:-z-1">
+        <div class="container py-110px">
+            <h1
+              class="text-2xl sm:text-3xl md:text-26px lg:text-3xl xl:text-4xl font-bold text-heading-color mb-15px"
+            >
+              <span
+                class="leading-1.3 md:leading-1.3 lg:leading-1.3 xl:leading-1.3"
+                >Property details</span
+              >
+            </h1>
+            <ul
+              class="breadcrumb flex gap-30px items-center text-sm lg:text-base font-bold pt-4"
+            >
+              <li class="home relative leading-1.8 lg:leading-1.8">
+                <a href="/"
+                  ><i class="fas fa-home text-secondary-color"></i> Home</a
+                >
+              </li>
+              <li class="leading-1.8 lg:leading-1.8 text-heading-color">
+                Property details
+              </li>
+            </ul>
+          </div>
+    </div>
+</section>
+
+<!-- details slider -->
+<div>
+    <div class="news-slider-container swiper-container relative">
+        <!-- product details -->
+        <div class="swiper product-details-slider static">
+            <div class="swiper-wrapper mb-10">
+                <!-- card 1 -->
+                 {% for content in property.property_contents.all %}
+                <div class="swiper-slide cursor-default">
+                    <a href="{% if content.image %}{{content.image.url}}{% else %}{% static 'imgs/img-slide/31.jpg' %}{% endif %}" class="glightbox overflow-hidden" data-width="118vh"><img
+                            class="hover:scale-110 transition-all duration-700" src="{% if content.image %}{{content.image.url}}{% else %}{% static 'imgs/img-slide/31.jpg' %}{% endif %}" alt="{{property.title}} cover image"></a>
+                </div>
+                 {% endfor %}
+                
+
+                
+            </div>
+            <!-- pagination -->
+            <div
+                class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal !-bottom-[6px] block lg:hidden">
+                <span class="swiper-pagination-bullet" tabindex="0" role="button"
+                    aria-label="Go to slide 1"></span><span
+                    class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button"
+                    aria-label="Go to slide 2" aria-current="true"></span><span class="swiper-pagination-bullet"
+                    tabindex="0" role="button" aria-label="Go to slide 3"></span>
+            </div>
+            <!--  navigation -->
+            <div class="hidden lg:block">
+                <div class="swiper-button-next bg-white z-1">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                <div class="swiper-button-prev bg-white z-1">
+                    <i class="fas fa-arrow-left"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- product details section -->
+<section>
+    <div class="container modal-container property-tab pt-70px pb-20">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-x-30px">
+            <!-- details body -->
+            <div class="lg:col-start-1 lg:col-span-8">
+                <!--  top -->
+                <ul class="flex flex-wrap gap-x-15px md:gap-x-35px gap-y-15px items-center mb-30px">
+                    <li>
+                        <ul class="flex gap-x-15px md:gap-x-30px items-center">
+                            <li>
+                                <a class="text-xs md:text-sm uppercase text-white px-15px pt-5px pb-0.5 bg-secondary-color hover:bg-primary-color hover:text-white font-semibold"
+                                    href="#"><span class="leading-1.8 md:leading-1.8">Featured</span></a>
+                            </li>
+                            <li>
+                                <a class="text-xs md:text-sm uppercase text-white px-15px pt-5px pb-0.5 bg-orange font-semibold hover:text-white"
+                                    href="#"><span class="leading-1.8 md:leading-1.8">For Rent</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="flex gap-x-15px md:gap-x-30px items-center">
+                            <li>
+                                <p class="text-xs md:text-sm font-semibold">
+                                    <span class="leading-1.8 md:leading-1.8"><i
+                                            class="far fa-calendar-alt text-secondary-color mr-5px"></i>
+                                        May 19, 2024</span>
+                                </p>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                </ul>
+
+                <!-- main -->
+                <div>
+                    <h4 class="text-2xl md:text-26px lg:text-3xl xl:text-4xl font-bold text-heading-color mb-15px">
+                        <span class="leading-1.3 lg:leading-1.3 xl:leading-1.3">{{property.title}}</span>
+                    </h4>
+                    <p class="text-sm">
+                        <span class="leading-1.8"><i class="flaticon-pin text-secondary-color"></i> {{property.get_full_address}}</span>
+                    </p>
+                    <!-- Description -->
+                    <h4
+                        class="text-22px font-semibold leading-1.3 pl-10px border-l-2 border-secondary-color text-heading-color my-30px">
+                        Description
+                    </h4>
+                    {{property.description|safe}}
+                    <h4
+                        class="text-22px font-semibold leading-1.3 pl-10px border-l-2 border-secondary-color text-heading-color my-30px">
+                        Property Detail
+                    </h4>
+                    <div class="flex flex-col md:flex-row bg-section-bg-1 mb-60px">
+                        <ul class="px-30px md:px-50px py-5 md:pt-30px md:pb-10 md:border-r md:border-border-color-7">
+                            <li class="text-sm mt-4 font-semibold">
+                                <span class="leading-1.8 min-w-[110px] inline-block flex-shrink-0">Property ID:</span>
+                                <p class="text-sm lg:text-base inline-block text-heading-color">
+                                    <span class="leading-1.8 lg:leading-1.8"> {{property.property_id}}</span>
+                                </p>
+                            </li>
+                            <li class="text-sm mt-4 font-semibold">
+                                <span class="leading-1.8 min-w-[110px] inline-block flex-shrink-0">Home Area:
+                                </span>
+                                <p class="text-sm lg:text-base inline-block text-heading-color">
+                                    <span class="leading-1.8 lg:leading-1.8">
+                                        {{property.room_area}} sqft</span>
+                                </p>
+                            </li>
+                            <li class="text-sm mt-4 font-semibold">
+                                <span class="leading-1.8 min-w-[110px] inline-block flex-shrink-0">Rooms:</span>
+                                <p class="text-sm lg:text-base inline-block text-heading-color">
+                                    <span class="leading-1.8 lg:leading-1.8"> {{property.number_of_rooms}} {{property.get_room_type_display}}</span>
+                                </p>
+                            </li>
+                            <li class="text-sm mt-4 font-semibold">
+                                <span class="leading-1.8 min-w-[110px] inline-block flex-shrink-0">Baths</span>
+                                <p class="text-sm lg:text-base inline-block text-heading-color">
+                                    <span class="leading-1.8 lg:leading-1.8"> {{property.number_of_baths}}</span>
+                                </p>
+                            </li>
+
+                        </ul>
+                        <ul class="px-30px md:px-50px py-5 md:pt-30px md:pb-10">
+                            <li class="text-sm mt-4 font-semibold">
+                                <span class="leading-1.8 min-w-[110px] inline-block flex-shrink-0">Lot Area:</span>
+                                <p class="text-sm lg:text-base inline-block text-heading-color">
+                                    <span class="leading-1.8 lg:leading-1.8"> {{property.property_id}}</span>
+                                </p>
+                            </li>
+                            <li class="text-sm mt-4 font-semibold">
+                                <span class="leading-1.8 min-w-[110px] inline-block flex-shrink-0">Lot dimensions:
+                                </span>
+                                <p class="text-sm lg:text-base inline-block text-heading-color">
+                                    <span class="leading-1.8 lg:leading-1.8">
+                                        {{property.room_area}} sqft</span>
+                                </p>
+                            </li>
+                            <li class="text-sm mt-4 font-semibold">
+                                <span class="leading-1.8 min-w-[110px] inline-block flex-shrink-0">Beds:</span>
+                                <p class="text-sm lg:text-base inline-block text-heading-color">
+                                    <span class="leading-1.8 lg:leading-1.8"> {{property.number_of_beds}}</span>
+                                </p>
+                            </li>
+                            <li class="text-sm mt-4 font-semibold">
+                                <span class="leading-1.8 min-w-[110px] inline-block flex-shrink-0">Price:</span>
+                                <p class="text-sm lg:text-base inline-block text-heading-color">
+                                    <span class="leading-1.8 lg:leading-1.8"> R{{property.price}}</span>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Facts and Features-->
+                    
+                    <!-- Gallery -->
+                    
+
+                    <!-- Amenities -->
+                    <h4
+                        class="text-22px font-semibold leading-1.3 pl-10px border-l-2 border-secondary-color text-heading-color my-30px">
+                        Amenities
+                    </h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-60px gap-y-15px">
+                        <ul class="flex flex-col gap-y-15px">
+                            {% for aminity in property.aminities.all|slice:":5" %}
+                                <li class="text-sm font-bold">
+                                    <label for="dishwasher-type" class="checkbox-item leading-1.8 group flex items-center cursor-pointer"><input
+                                            type="checkbox" id="dishwasher-type" class="hidden" checked>
+                                        <span
+                                            class="checkmark w-4 h-4 bg-white group-hover:bg-secondary-color border border-border-color-16 transition-all duration-300 relative z-0 after:absolute after:left-1 after:top-0 after:w-[5px] after:h-10px after:rotate-[45deg] after:border after:border-t-0 after:opacity-0 after:border-l-0 after:border-white mr-15px inline-block leading-1"></span>
+                                        {{aminity.title}}
+                                    </label>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        <ul class="flex flex-col gap-y-15px">
+                            {% for aminity in property.aminities.all|slice:"5:9" %}
+                            <li class="text-sm font-bold">
+                                <label for="dishwasher-type" class="checkbox-item leading-1.8 group flex items-center cursor-pointer"><input
+                                        type="checkbox" id="dishwasher-type" class="hidden" checked>
+                                    <span
+                                        class="checkmark w-4 h-4 bg-white group-hover:bg-secondary-color border border-border-color-16 transition-all duration-300 relative z-0 after:absolute after:left-1 after:top-0 after:w-[5px] after:h-10px after:rotate-[45deg] after:border after:border-t-0 after:opacity-0 after:border-l-0 after:border-white mr-15px inline-block leading-1"></span>
+                                    {{aminity.title}}
+                                </label>
+                            </li>
+                            {% endfor %}
+
+
+                        </ul>
+                        <ul class="flex flex-col gap-y-15px">
+                            {% for aminity in property.aminities.all|slice:"9:" %}
+                            <li class="text-sm font-bold">
+                                <label for="dishwasher-type" class="checkbox-item leading-1.8 group flex items-center cursor-pointer"><input
+                                        type="checkbox" id="dishwasher-type" class="hidden" checked>
+                                    <span
+                                        class="checkmark w-4 h-4 bg-white group-hover:bg-secondary-color border border-border-color-16 transition-all duration-300 relative z-0 after:absolute after:left-1 after:top-0 after:w-[5px] after:h-10px after:rotate-[45deg] after:border after:border-t-0 after:opacity-0 after:border-l-0 after:border-white mr-15px inline-block leading-1"></span>
+                                    {{aminity.title}}
+                                </label>
+                            </li>
+                            {% endfor %}
+                        
+                        
+                        </ul>
+
+                    </div>
+                    <!-- Location -->
+                    <h4
+                        class="text-22px font-semibold leading-1.3 pl-10px border-l-2 border-secondary-color text-heading-color my-30px">
+                        Location
+                    </h4>
+                    <div class="h-360px mb-60px">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9334.271551495209!2d-73.97198251485975!3d40.668170674982946!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25b0456b5a2e7%3A0x68bdf865dda0b669!2sBrooklyn%20Botanic%20Garden%20Shop!5e0!3m2!1sen!2sbd!4v1590597267201!5m2!1sen!2sbd"
+                            style="height:100%;width:100%;border:0px;" allowfullscreen="" aria-hidden="false"
+                            tabindex="0"></iframe>
+                    </div>
+
+                    <!-- Floor Plans -->
+
+                    <!-- Property Video -->
+                     {% if property.property_video_link %}
+                    <h4
+                        class="text-22px font-semibold leading-1.3 pl-10px border-l-2 border-secondary-color text-heading-color my-30px">
+                        Property Video
+                    </h4>
+                    <div class="mb-60px">
+                        <div
+                            class="relative z-0 after:w-full after:h-full after:absolute after:left-0 after:top-0 after:bg-primary-color after:opacity-40 after:z-1 w-full h-auto lg:h-[450px] xl:h-[500px] min-h-80 md:min-h-[350px] bg-[url('../img/others/5.html')] bg-center bg-no-repeat bg-cover">
+                            <div class="absolute left-0 top-0 flex justify-center items-center h-full w-full z-10">
+                                <a class="glightbox3 w-50px h-50px lg:w-20 lg:h-20 text-center text-sm lg:text-base text-secondary-color shadow-box-shadow-2 rounded-100% bg-white flex items-center justify-center"
+                                    href="{{property.property_video_link}}"
+                                    data-glightbox="type: video;">
+                                    <i class="icon-play"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    
+
+
+                </div>
+            </div>
+            <!-- sidebar -->
+            <div class="lg:col-start-9 lg:col-span-4 pt-60px lg:pt-0">
+
+
+                <!-- Drop Messege For Book -->
+
+                <div class="px-5 pt-35px pb-10 xl:pl-35px xl:pr-30px mb-10 border-2 border-border-color-11">
+                    <h4 class="text-lg font-semibold text-heading-color mb-25px">
+                        <span class="leading-1.3 pl-10px border-l-2 border-secondary-color">Want to stay here?</span>
+                    </h4>
+
+                    <div>
+                        <a href="{% url 'properties:apply-student-details' property.slug %}"
+                            class="uppercase text-sm md:text-base text-white bg-secondary-color hover:bg-primary-color relative group whitespace-nowrap font-normal mb-0 transition-all duration-300 border border-secondary-color hover:border-heading-color inline-block z-0">
+                            <button type="submit"
+                                class="relative z-1 px-5 md:px-25px lg:px-10 py-10px md:py-15px lg:py-17px group-hover:text-white leading-23px uppercase">
+                                APPLY NOW
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Follow Us -->
+                <div class="px-5 pt-35px pb-10 xl:pl-35px xl:pr-30px mb-10 border-2 border-border-color-11">
+                    <h4 class="text-lg font-semibold text-heading-color mb-25px">
+                        <span class="leading-1.3 pl-10px border-l-2 border-secondary-color">Follow Us</span>
+                    </h4>
+                    <ul class="flex gap-x-15px pt-4">
+                        <li>
+                            <a href="https://www.facebook.com/"
+                                class="text-sm lg:text-base w-10 h-10 bg-section-bg-1 hover:bg-secondary-color hover:text-white flex items-center justify-center"><i
+                                    class="fab fa-facebook-f"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://x.com/"
+                                class="text-sm lg:text-base w-10 h-10 bg-section-bg-1 hover:bg-secondary-color hover:text-white flex items-center justify-center"><i
+                                    class="fab fa-twitter"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/"
+                                class="text-sm lg:text-base w-10 h-10 bg-section-bg-1 hover:bg-secondary-color hover:text-white flex items-center justify-center"><i
+                                    class="fab fa-linkedin"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/"
+                                class="text-sm lg:text-base w-10 h-10 bg-section-bg-1 hover:bg-secondary-color hover:text-white flex items-center justify-center"><i
+                                    class="fab fa-instagram"></i></a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

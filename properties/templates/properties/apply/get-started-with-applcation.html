@@ -1,0 +1,333 @@
+{% extends "_base.html" %}
+{% load static %}
+
+
+{% block content %}
+<!-- banner section -->
+<section>
+    <!-- banner section -->
+    <div id="needs-bg-image-2"
+        class="w-full bg-[url('../img/bg/14.jpg')] bg-no-repeat bg-cover bg-center relative z-0 after:w-full after:h-full after:absolute after:top-0 after:left-0 after:bg-white after:bg-opacity-30 after:-z-1">
+        <div class="container py-110px">
+            <h1 class="text-2xl sm:text-3xl md:text-26px lg:text-3xl xl:text-4xl font-bold text-heading-color mb-15px">
+                <span class="leading-1.3 md:leading-1.3 lg:leading-1.3 xl:leading-1.3">Account
+                </span>
+            </h1>
+            <ul class="breadcrumb flex gap-30px items-center text-sm lg:text-base font-bold pt-4">
+                <li class="home relative leading-1.8 lg:leading-1.8">
+                    <a href="{% url 'npi_home:npi-home' %}"><i class="fas fa-home text-secondary-color"></i> Home</a>
+                </li>
+                <li class="leading-1.8 lg:leading-1.8 text-heading-color">
+                    How It Works?
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="flex flex-col justify-center">
+    <div class="w-full pt-70px pb-20">
+        <div class="container mx-auto flex flex-col items-center gap-16">
+            <div class="flex flex-col gap-16">
+                <div class="flex flex-col gap-2 text-center">
+                    <h2 class="mb-2  text-3xl font-extrabold leading-tight text-custom-primary lg:text-4xl">
+                        How It works?
+                    </h2>
+                    <p class="text-lg md:text-2xl font-bold leading-7 text-heading-color">
+                        Apply For Accommodation with NPI in 3 easy steps.
+                    </p>
+                </div>
+            </div>
+            <div class="w-full grid gap-30px">
+                <div class="flex items-start gap-4">
+                    <div
+                        class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-heading-color border-2 transition hover:bg-purple-blue-600 focus:bg-purple-blue-700">
+                        <span class="text-base font-bold leading-7">1</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <h3 class="mb-2 text-base md:text-xl font-bold leading-tight text-custom-primary">
+                            Create your Account
+                        </h3>
+                        <p class="text-base font-medium leading-7 text-paragraph-color">
+                            If you don't already have an account with us, consider <a
+                                href="{% url 'accounts:register' %}" class="text-heading-color font-bold">creating</a> one or <a
+                                href="{% url 'accounts:login' %}" class="text-heading-color font-bold">login</a>.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start gap-4">
+                    <div
+                        class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-solid border-heading-color bg-transparent text-heading-color">
+                        <span class="text-base font-bold leading-7">2</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <h3 class="mb-2 text-base md:text-xl font-bold leading-tight text-custom-primary">
+                            Add Application
+                        </h3>
+                        <p class="text-base font-medium leading-7 text-paragraph-color">
+                            Login & choose property you wish to stay in below and begin your application. You can apply online or <a>download</a> application form and fill it. Please ready our <a>terms of application, fees and required documents</a> for your application to be considered.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start gap-4">
+                    <div
+                        class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-solid border-heading-color bg-transparent text-heading-color">
+                        <span class="text-base font-bold leading-7">3</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <h3 class="mb-2 text-base md:text-xl font-bold leading-tight text-custom-primary">
+                            Submit Application And Payment
+                        </h3>
+                        <p class="text-base font-medium leading-7 text-paragraph-color">
+                            Upload all required documents and submit your online application. You can also email the
+                            application form to <a href="emailto:apply@npi.co.za" class="font-bold text-heading-color">apply@npi.co.za</a> and attach all the required documents.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="w-fit mx-auto">
+                <p class="text-paragraph-color text-sm">
+                    If you experience a glitch unexpectedly, simply send a screenshot of the trouble you've run into to
+                    <a href="emailto:support@npi.co.za" class="font-bold text-heading-color">support@npi.co.za</a>
+                    and we'll sort it out.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="bg-section-bg-1">
+        <div>
+            <div class="container py-30">
+                <!-- section heading -->
+                <div class="mb-50px">
+                    <p
+                        class="text-sm md:text-15px lg:text-base text-secondary-color capitalize inline-block font-semibold mb-1.5">
+                        <span class="leading-1.3">Get Started With Application</span>
+                    </p>
+                    <h2 class="text-2xl sm:text-3xl md:text-26px lg:text-3xl xl:text-44px text-heading-color font-bold">
+                        <span class="leading-1.3">Choose Property<br>
+                            Explore Below
+                        </span>
+                    </h2>
+                </div>
+                <!-- neighbour slider -->
+                <div class="neighbour-slider-container swiper-container relative -mx-15px">
+                    <div
+                        class="flex justify-center lg:block mb-10 lg:mb-10 lg:absolute lg:left-[35px] lg:bottom-10 lg:z-xl">
+                        <div class="w-[270px] lg:w-[420px]">
+                            <div class="swiper neighbour-slider-tumbs_slider">
+                                <div class="swiper-wrapper">
+                                    {% for property in properties %}
+                                    <div class="swiper-slide cursor-pointer">
+                                        <img src="{% if property.cover_image %}{{property.cover_image.url}}{% endif %}"
+                                            class="w-full border-[7px] border-white"
+                                            alt="{{property.title}} cover image">
+                                    </div>
+                                    {% endfor %}
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper neighbour-slider">
+                        <div class="swiper-wrapper">
+                            {% for property in properties %}
+                            <div class="swiper-slide px-15px">
+                                <div class="grid grid-cols-1 lg:grid-cols-12 gap-30px">
+                                    <div class="lg:col-start-1 lg:col-span-8">
+                                        <img src="{% if property.cover_image %}{{property.cover_image.url}}{% else %}{% static 'imgs/neighbour/1.jpg' %}{% endif %}"
+                                            class="w-full" alt="{{property.title}} cover image">
+                                    </div>
+                                    <div class="lg:col-start-9 lg:col-span-4 mb-50px">
+                                        <div class="group p-15px shadow-box-shadow-4 bg-white">
+                                            <!-- card thumbs -->
+                                            <div class="relative leading-1">
+                                                <a href="st-patricks-.private-hotel.html" class="overflow-hidden">
+                                                    <img src="{% if property.cover_image %}{{property.cover_image.url}}{% else %}{% static 'imgs/neighbour/1.jpg' %}{% endif %}"
+                                                        class="w-full transition-all duration-700"
+                                                        alt="{{property.title}} cover image">
+                                                </a>
+                                                <div
+                                                    class="text-13px leading-1.8 px-15px pt-6px pb-0.5 uppercase font-semibold absolute top-4 left-[10px] bg-white rounded-full">
+                                                    1 property
+                                                </div>
+                                            </div>
+                                            <!-- card body -->
+                                            <div class="pt-25px px-5px pb-10px">
+                                                <h4
+                                                    class="text-17px md:text-lg lg:text-xl font-semibold text-heading-color mb-3">
+                                                    <a href="{% url 'properties:get-property' property.slug %}"
+                                                        class="hover:text-secondary-color leading-1.3">{{property.city}},
+                                                        {{property.get_province_display}}</a>
+                                                </h4>
+
+                                                <p class="text-sm lg:text-base">
+                                                    <span class="leading-1.8 lg:leading-1.8 text-secondary-color">
+                                                        {{property.title}} /
+                                                    </span>
+                                                    <span class="leading-1.8 lg:leading-1.8">
+                                                        {{property.get_property_type_display}}
+                                                    </span>
+                                                </p>
+                                                <p class="text-sm lg:text-base pt-10px mb-5">
+                                                    <span class="leading-1.8 lg:leading-1.8">
+                                                        {{property.details|truncatewords:10}}
+                                                    </span>
+                                                </p>
+                                                <a href="{% url 'properties:get-property' property.slug %}"
+                                                    class="text-sm lg:text-base text-secondary-color">
+                                                    <span class="leading-1.8">View Property
+                                                        <i class="flaticon-right-arrow"></i></span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- neighbour accordion -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-30px">
+                    <ul class="accordion-container neighbour-accordion">
+                        <li class="accordion border-b-2 border-border-color-10">
+                            <!-- accordion header -->
+                            <div
+                                class="accordion-controller flex items-center justify-between cursor-pointer text-sm lg:text-base py-5 pl-5px pr-4 md:pb-5">
+                                <div class="flex gap-3 items-center font-semibold font-poppins">
+                                    <i
+                                        class="flaticon-mortarboard text-xl md:text-26px text-white w-10 h-10 md:w-50px md:h-50px bg-secondary-color leading-10 md:leading-50px text-center inline-block"></i>
+                                    <p class="text-primary-color text-sm md:text-lg">
+                                        Required Documents
+                                    </p>
+                                </div>
+                                <button class="px-3 h-full">
+                                    <span class="w-4 h-0.5 bg-primary-color block dark:bg-whiteColor"></span><span
+                                        class="w-4 h-0.5 bg-primary-color block dark:bg-whiteColor rotate-90 -mt-[2px]"></span>
+                                </button>
+                            </div>
+                            <!-- accordion content -->
+                            <div class="accordion-content h-0 overflow-hidden transition-all duration-500">
+                                <div class="content-wrapper px-5 md:px-10 pt-15px pb-25px text-sm lg:text-base">
+                                    <p class="leading-1.8 lg:leading-1.8 mb-5">
+                                        &dash; St Patricks Private Hostel, located in Libode, is just a 2-minute walk
+                                        (110m) from St Patricks High School, providing
+                                        students with convenient access to their school.
+                                        </br>
+                                        &dash; Nowethu House, situated in Mthatha's Ikhwezi Township, is close to
+                                        several educational institutions, including a
+                                        6-minute walk (400m) to Zimele High School, a 4-minute walk (290m) to
+                                        Ngangelizwe High School, and a 16-minute walk
+                                        (1.1km) to Nozuko Secondary School. The hostel offers easy access to these
+                                        schools, making it an ideal accommodation
+                                        choice for students in the area.
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="accordion border-b-2 border-border-color-10">
+                            <!-- accordion header -->
+                            <div
+                                class="accordion-controller flex items-center justify-between cursor-pointer text-sm lg:text-base py-5 pl-5px pr-4 md:pb-5">
+                                <div class="flex gap-3 items-center font-semibold font-poppins">
+                                    <i
+                                        class="flaticon-study text-xl md:text-26px text-white w-10 h-10 md:w-50px md:h-50px bg-secondary-color leading-10 md:leading-50px text-center inline-block"></i>
+                                    <p class="text-primary-color text-sm md:text-lg">
+                                        Terms And Conditions
+                                    </p>
+                                </div>
+                                <button class="px-3 h-full">
+                                    <span class="w-4 h-0.5 bg-primary-color block dark:bg-whiteColor"></span><span
+                                        class="w-4 h-0.5 bg-primary-color block dark:bg-whiteColor rotate-90 -mt-[2px]"></span>
+                                </button>
+                            </div>
+                            <!-- accordion content -->
+                            <div class="accordion-content h-0 overflow-hidden transition-all duration-500">
+                                <div class="content-wrapper px-5 md:px-10 pt-15px pb-25px text-sm lg:text-base">
+                                    <p class="leading-1.8 lg:leading-1.8 mb-5">
+                                        Both properties provide a conducive environment for academic success with onsite
+                                        Study Hubs. Nowethu House also offers a
+                                        combined Study Hub and TV room, ensuring a versatile space for both study and
+                                        relaxation.
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="accordion-container neighbour-accordion">
+                        <li class="accordion border-b-2 border-border-color-10">
+                            <!-- accordion header -->
+                            <div
+                                class="accordion-controller flex items-center justify-between cursor-pointer text-sm lg:text-base py-5 pl-5px pr-4 md:pb-5">
+                                <div class="flex gap-3 items-center font-semibold font-poppins">
+                                    <i
+                                        class="flaticon-building text-xl md:text-26px text-white w-10 h-10 md:w-50px md:h-50px bg-secondary-color leading-10 md:leading-50px text-center inline-block"></i>
+                                    <p class="text-primary-color text-sm md:text-lg">
+                                        Payment Information
+                                    </p>
+                                </div>
+                                <button class="px-3 h-full">
+                                    <span class="w-4 h-0.5 bg-primary-color block dark:bg-whiteColor"></span><span
+                                        class="w-4 h-0.5 bg-primary-color block dark:bg-whiteColor rotate-90 -mt-[2px]"></span>
+                                </button>
+                            </div>
+                            <!-- accordion content -->
+                            <div class="accordion-content h-0 overflow-hidden transition-all duration-500">
+                                <div class="content-wrapper px-5 md:px-10 pt-15px pb-25px text-sm lg:text-base">
+                                    <p class="leading-1.8 lg:leading-1.8 mb-5">
+                                        For shopping needs, Nowethu House residents are just a 22-minute walk or
+                                        4-minute drive (1.9km) from Khwezi Spar.
+                                        Additionally, the Engen Filling Station and BTNgebs are both 5 minutes by car or
+                                        22-26 minutes on foot (2.1km).
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="accordion border-b-2 border-border-color-10">
+                            <!-- accordion header -->
+                            <div
+                                class="accordion-controller flex items-center justify-between cursor-pointer text-sm lg:text-base py-5 pl-5px pr-4 md:pb-5">
+                                <div class="flex gap-3 items-center font-semibold font-poppins">
+                                    <i
+                                        class="flaticon-other text-xl md:text-26px text-white w-10 h-10 md:w-50px md:h-50px bg-secondary-color leading-10 md:leading-50px text-center inline-block"></i>
+                                    <p class="text-primary-color text-sm md:text-lg">
+                                        Fees Structure
+                                    </p>
+                                </div>
+                                <button class="px-3 h-full">
+                                    <span class="w-4 h-0.5 bg-primary-color block dark:bg-whiteColor"></span><span
+                                        class="w-4 h-0.5 bg-primary-color block dark:bg-whiteColor rotate-90 -mt-[2px]"></span>
+                                </button>
+                            </div>
+                            <!-- accordion content -->
+                            <div class="accordion-content h-0 overflow-hidden transition-all duration-500">
+                                <div class="content-wrapper px-5 md:px-10 pt-15px pb-25px text-sm lg:text-base">
+                                    <p class="leading-1.8 lg:leading-1.8 mb-5">
+                                        For extracurricular activities and recreation, residents of Nowethu House can
+                                        access the Rotary Stadium within a
+                                        13-minute walk (1.0km). The Ikhwezi Public Library, just a 2-minute walk (130m)
+                                        from Nowethu House, provides additional
+                                        study resources and quiet spaces for learning.
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

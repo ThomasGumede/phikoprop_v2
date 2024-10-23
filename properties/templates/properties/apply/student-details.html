@@ -1,0 +1,268 @@
+{% extends "_application.html" %}
+{% load static %}
+
+
+{% block apply_form %}
+<div class="transition-all duration-300">
+    <form method="post" class="form-primary add-property-form bg-white text-sm lg:text-base">
+        {% csrf_token %}
+        <!-- Property Description -->
+        <div>
+            <h5 class="text-sm md:text-15px lg:text-base font-bold leading-1.3 text-heading-color mb-15px">
+                <span class="leading-1.3 md:leading-1.3 lg:leading-1.3">
+                    Student Details</span>
+            </h5>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-30px mb-35px">
+                <div class="relative block">
+                    
+                    <select class="selectize" name="{{form.title.html_name}}"
+                        value="{% if form.title.value %}{{form.title.value}}{% endif %}">
+                        <option value selected>*Title</option>
+                        <option value="Mr">Mr</option>
+                        
+                        <option value="Mrs">Mrs</option>
+                        
+                        <option value="Ms">Ms</option>
+                        
+                        <option value="Dr">Dr</option>
+                        
+                        <option value="Prof">Prof.</option>
+                    </select>
+                </div>
+                <div class="relative">
+                    <input type="text" placeholder="*First Name" name="{{form.first_names.html_name}}" value="{% if form.first_names.value %}{{form.first_names.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                </div>
+
+                <div class="relative">
+                    <input type="text" placeholder="*Last Name" name="{{form.last_name.html_name}}" value="{% if form.last_name.value %}{{form.last_name.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                </div>
+                <div class="relative">
+                    <input type="text" placeholder="Preferred name" name="{{form.prefered_name.html_name}}" value="{% if form.prefered_name.value %}{{form.prefered_name.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                </div>
+                <div class="relative">
+                    <input type="text" placeholder="Place of birth" name="{{form.place_of_birth.html_name}}" value="{% if form.place_of_birth.value %}{{form.place_of_birth.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                </div>
+                <div class="relative">
+                    <input type="tel" placeholder="*Student Cell Number" name="{{form.phone.html_name}}" value="{% if form.phone.value %}{{form.phone.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                </div>
+                <div class="relative">
+                    <input type="tel" placeholder="Student Email" name="{{form.email.html_name}}" value="{% if form.email.value %}{{form.email.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                </div>
+
+                <div class="relative">
+                    <input type="text" placeholder="*ID Number" name="{{form.id_number.html_name}}" value="{% if form.id_number.value %}{{form.id_number.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                </div>
+
+                <div class="relative">
+                    <input type="date" placeholder="*Date Of Birth" name="{{form.date_of_birth.html_name}}" value="{% if form.date_of_birth.value %}{{form.date_of_birth.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                </div>
+                <div class="relative block">
+                    <select class="selectize" name="{{form.gender.html_name}}" value="{% if form.gender.value %}{{form.gender.value}}{% endif %}">
+                        <option value selected>*Gender</option>
+                        <option value="MALE">Male</option>
+                        <option value="FEMALE">Female</option>
+                        <option value="OTHER">Prefer not to say</option>
+
+                    </select>
+                </div>
+                
+            </div>
+            <div class="grid grid-cols-1 gap-30px mb-35px">
+
+                <!-- message -->
+                <div class="relative">
+                    <textarea placeholder="Describe yourself" name="{{form.biography.html_name}}"
+                        class="min-h-[150px] text-paragraph-color pl-5 pr-50px py-15px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">{% if form.biography.value %}{{form.biography.value}}{% endif %}</textarea>
+                    <span class="absolute top-[30px] -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Property Price -->
+        <div>
+            <h5 class="text-sm md:text-15px lg:text-base font-bold leading-1.3 text-heading-color mb-15px">
+                <span class="leading-1.3 md:leading-1.3 lg:leading-1.3">
+                    School Details</span>
+            </h5>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-30px mb-35px">
+                <div class="relative">
+                    <input type="text" placeholder="*Year of Enrolment" name="{{form.year_of_enrollment.html_name}}" value="{% if form.year_of_enrollment.value %}{{form.year_of_enrollment.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                </div>
+
+                <div class="relative">
+                    <input type="text" placeholder="*Name of School" name="{{form.school_name.html_name}}" value="{% if form.school_name.value %}{{form.school_name.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                </div>
+
+                <div class="relative">
+                    <input type="text" placeholder="*Grade" name="{{form.grade.html_name}}" value="{% if form.grade.value %}{{form.grade.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                </div>
+
+
+                
+                <div class="relative block">
+                    <select class="selectize" name="{{form.home_language.html_name}}"
+                        value="{% if form.home_language.value %}{{form.home_language.value}}{% endif %}">
+                        <option value selected>*Home Language</option>
+                        <option value="AF">Afrikaans</option>
+                
+                        <option value="EN">English</option>
+                
+                        <option value="ND">isiNdebele</option>
+                
+                        <option value="XH">isiXhosa</option>
+                
+                        <option value="ZU">isiZulu</option>
+                
+                        <option value="NS">Sepedi</option>
+                
+                        <option value="ST">Sesotho</option>
+                
+                        <option value="TN">Setswana</option>
+                
+                        <option value="SS">siSwati</option>
+                
+                        <option value="VE">Tshivenda</option>
+                
+                        <option value="TS">Xitsonga</option>
+                
+                        <option value="SL">South African Sign Language</option>
+                    </select>
+                </div>
+            </div>
+
+            
+        </div>
+
+        <!-- Select Categories -->
+        <div>
+            <h5 class="text-sm md:text-15px lg:text-base font-bold leading-1.3 text-heading-color mb-15px">
+                <span class="leading-1.3 md:leading-1.3 lg:leading-1.3">
+                    Student Home Address</span>
+            </h5>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-30px mb-35px">
+                <div class="relative">
+                    <input type="text" placeholder="*Address One" name="{{form.address_one.html_name}}" value="{% if form.address_one.value %}{{form.address_one.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                </div>
+
+                <div class="relative">
+                    <input type="text" placeholder="Address Two e.g Building name, home number" name="{{form.address_two.html_name}}" value="{% if form.address_two.value %}{{form.address_two.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                </div>
+
+                <div class="relative">
+                    <input type="text" placeholder="*Suburb" name="{{form.surbub.html_name}}" value="{% if form.surbub.value %}{{form.surbub.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                </div>
+                <div class="relative">
+                    <input type="text" placeholder="*City" name="{{form.city.html_name}}" value="{% if form.city.value %}{{form.city.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                </div>
+                <div class="relative">
+                    <input type="number" placeholder="*Zipcode" name="{{form.zipcode.html_name}}" value="{% if form.zipcode.value %}{{form.zipcode.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                </div>
+                <div class="relative block">
+                    <select class="selectize" name="{{form.province.html_name}}" value="{% if form.province.value %}{{form.province.value}}{% endif %}">
+                        <option value="" {% if not form.title.value  %}selected{% endif %}>*Province</option>
+                    
+                        <option {% if form.title.value == "kzn" %}selected{% endif %} value="kzn">KwaZulu-Natal</option>
+                        
+                        <option {% if form.title.value == "mp" %}selected{% endif %} value="mp">Mpumalanga</option>
+                        
+                        <option {% if form.title.value == "nw" %}selected{% endif %} value="nw">North-West</option>
+                        
+                        <option {% if form.title.value == "fs" %}selected{% endif %} value="fs">Free-State</option>
+                        
+                        <option {% if form.title.value == "wc" %}selected{% endif %} value="wc">Western Cape</option>
+                        
+                        <option {% if form.title.value == "lp" %}selected{% endif %} value="lp">Limpopo</option>
+                        
+                        <option {% if form.title.value == "gp" %}selected{% endif %} value="gp">Gauteng</option>
+                        
+                        <option {% if form.title.value == "ec" %}selected{% endif %} value="ec">Eastern Cape</option>
+                        
+                        <option {% if form.title.value == "nc" %}selected{% endif %} value="nc">Northern Cape</option>
+                    </select>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- submit -->
+        <div class="flex gap-5 justify-start">
+            <h5
+                class="uppercase text-sm md:text-base text-white relative group whitespace-nowrap font-normal mb-0 transition-all duration-300 border border-secondary-color hover:border-heading-color inline-block z-0">
+                <span
+                    class="inline-block absolute top-0 right-0 w-full h-full bg-secondary-color group-hover:bg-black -z-1 group-hover:w-0 transition-all duration-300"></span>
+                <button type="submit" value="submit"
+                    class="relative z-1 px-5 md:px-25px lg:px-10 py-10px md:py-15px lg:py-17px group-hover:text-heading-color leading-1.5 uppercase">
+                    Next Step
+                </button>
+            </h5>
+        </div>
+    </form>
+</div>
+
+{% endblock apply_form %}

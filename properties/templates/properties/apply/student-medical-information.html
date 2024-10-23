@@ -1,0 +1,217 @@
+{% extends "_application.html" %}
+{% load static %}
+
+
+{% block apply_form %}
+<div class="transition-all duration-300">
+    <form method="post" class="form-primary add-property-form bg-white text-sm lg:text-base">
+        {% csrf_token %}
+        <div>
+            <h5 class="text-sm md:text-15px lg:text-base font-bold leading-1.3 text-heading-color mb-15px">
+                <span class="leading-1.3 md:leading-1.3 lg:leading-1.3">
+                    Student Medical Information </span>
+            </h5>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-30px mb-30px">
+                
+                <div class="relative">
+                    <input type="text" placeholder="Family Doctor Names (If Available)" name="{{form.family_doctor_name.html_name}}"
+                        value="{% if form.family_doctor_name.value %}{{form.family_doctor_name.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                    {% if form.family_doctor_name.errors %}
+                    <span
+                        class="text-[11px] text-red-500 block font-normal lowercase">{{form.family_doctor_name.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+                <div class="relative">
+                    <input type="text" placeholder="Family Doctor Tel  (If Available)" name="{{form.family_doctor_telephone.html_name}}"
+                        value="{% if form.family_doctor_telephone.value %}{{form.family_doctor_telephone.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                    {% if form.family_doctor_telephone.errors %}
+                    <span
+                        class="text-[11px] text-red-500 block font-normal lowercase">{{form.family_doctor_telephone.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+                <div class="relative">
+                    <input type="text" placeholder="Medical Aid Title (If Available)" name="{{form.medical_aid_name.html_name}}"
+                        value="{% if form.medical_aid_name.value %}{{form.medical_aid_name.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                    {% if form.medical_aid_name.errors %}
+                    <span
+                        class="text-[11px] text-red-500 block font-normal lowercase">{{form.medical_aid_name.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+                <div class="relative">
+                    <input type="text" placeholder="Medical Aid Plan (If Available)" name="{{form.medical_aid_plan.html_name}}"
+                        value="{% if form.medical_aid_plan.value %}{{form.medical_aid_plan.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                    {% if form.medical_aid_plan.errors %}
+                    <span class="text-[11px] text-red-500 block font-normal lowercase">{{form.medical_aid_plan.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+                <div class="relative">
+                    <input type="text" placeholder="*Student Allergies e.g Allergic to Dairy Products, Beef, etc" required
+                        name="{{form.known_allergies.html_name}}"
+                        value="{% if form.known_allergies.value %}{{form.known_allergies.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                    {% if form.known_allergies.errors %}
+                    <span
+                        class="text-[11px] text-red-500 block font-normal lowercase">{{form.known_allergies.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+                <div class="relative">
+                    <input type="text" placeholder="*Student Disabilities Or Illnesses" name="{{form.known_disabilities_or_illnesses.html_name}}"
+                        value="{% if form.known_disabilities_or_illnesses.value %}{{form.known_disabilities_or_illnesses.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                    {% if form.known_disabilities_or_illnesses.errors %}
+                    <span
+                        class="text-[11px] text-red-500 block font-normal lowercase">{{form.known_disabilities_or_illnesses.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+                
+
+            </div>
+            <div class="grid grid-cols-1 gap-30px mb-35px">
+            
+                <!-- message -->
+                <div class="relative">
+                    <textarea placeholder="*Additional Student Health Information" name="{{form.additional_health_information.html_name}}" required
+                        class="min-h-[150px] text-paragraph-color pl-5 pr-50px py-15px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">{% if form.additional_health_information.value %}{{form.additional_health_information.value}}{% endif %}</textarea>
+                    <span class="absolute top-[30px] -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                </div>
+            </div>
+            
+        </div>
+        <div>
+            <h5 class="text-sm md:text-15px lg:text-base font-bold leading-1.3 text-heading-color mb-15px">
+                <span class="leading-1.3 md:leading-1.3 lg:leading-1.3">
+                    Emergency Contact Person </span>
+            </h5>
+        
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-30px mb-30px">
+                
+                <div class="relative">
+                    <input type="text" placeholder="*Emergency Contact Person Names" name="{{form.emergency_contact_name.html_name}}"
+                        value="{% if form.emergency_contact_name.value %}{{form.emergency_contact_name.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                    {% if form.emergency_contact_name.errors %}
+                    <span
+                        class="text-[11px] text-red-500 block font-normal lowercase">{{form.emergency_contact_name.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+        
+                <div class="relative">
+                    <input type="tel" placeholder="*Emergency Contact Person Cell Phone" name="{{form.emergency_contact_number.html_name}}"
+                        value="{% if form.emergency_contact_number.value %}{{form.emergency_contact_number.value}}{% endif %}"
+                        class="text-paragraph-color pl-5 pr-50px outline-none border-2 border-border-color-9 focus:border focus:border-secondary-color h-65px block w-full rounded-none placeholder:text-paragraph-color placeholder:text-sm">
+                    <span class="absolute top-1/2 -translate-y-1/2 right-4">
+                        <i class="fas fa-pencil text-sm lg:text-base text-secondary-color font-bold"></i>
+                    </span>
+                    {% if form.emergency_contact_number.errors %}
+                    <span
+                        class="text-[11px] text-red-500 block font-normal lowercase">{{form.emergency_contact_number.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+                
+                <div class="relative block">
+                    <select class="selectize" name="{{form.emergency_contact_relationship.html_name}}"
+                        value="{% if form.emergency_contact_relationship.value %}{{form.emergency_contact_relationship.value}}{% endif %}">
+                        <option value selected>*Relationship</option>
+                        <option value="OTHER">Other</option>
+        
+                        <option value="WIFE">Wife</option>
+        
+                        <option value="HUSBAND">Husband</option>
+        
+                        <option value="DAUGHTER">Daughter</option>
+        
+                        <option value="SON">Son</option>
+        
+                        <option value="MOTHER">Mother</option>
+        
+                        <option value="FATHER">Father</option>
+        
+                        <option value="STEPMOTHER">Step-mother</option>
+        
+                        <option value="STEPFATHER">Step-father</option>
+        
+                        <option value="STEPBROTHER">Step-Brother</option>
+        
+                        <option value="STEPSISTER">Step-Sister</option>
+        
+                        <option value="GRANDMOTHER">Grandmother</option>
+        
+                        <option value="GRANDFATHER">Grandfather</option>
+        
+                        <option value="BROTHER">Brother</option>
+        
+                        <option value="SISTER">Sister</option>
+        
+                        <option value="COUSIN">Cousin</option>
+        
+                        <option value="AUNT">Aunt</option>
+        
+                        <option value="UNCLE">Uncle</option>
+        
+                        <option value="NEPHEW">Nephew</option>
+        
+                        <option value="NIECE">Niece</option>
+                    </select>
+        
+                    {% if form.emergency_contact_relationship.errors %}
+                    <span
+                        class="text-[11px] text-red-500 block font-normal lowercase">{{form.emergency_contact_relationship.errors.as_text}}</span>
+                    {% endif %}
+                </div>
+        
+            </div>
+        </div>
+        
+        <!-- submit -->
+        <div class="flex gap-5 justify-start">
+            <h5
+                class="uppercase text-sm md:text-base text-white relative group whitespace-nowrap font-normal mb-0 transition-all duration-300 border border-secondary-color hover:border-heading-color inline-block z-0">
+                <span
+                    class="inline-block absolute top-0 right-0 w-full h-full bg-secondary-color group-hover:bg-black -z-1 group-hover:w-0 transition-all duration-300"></span>
+                <a href="{% url 'properties:applicant-guardians' application.id %}"
+                    class="relative z-1 px-5 md:px-25px lg:px-10 py-10px md:py-15px lg:py-17px group-hover:text-heading-color leading-1.5 uppercase">
+                    Prev Step
+                </a>
+            </h5>
+            <h5
+                class="uppercase text-sm md:text-base text-white relative group whitespace-nowrap font-normal mb-0 transition-all duration-300 border border-secondary-color hover:border-heading-color inline-block z-0">
+                <span
+                    class="inline-block absolute top-0 right-0 w-full h-full bg-secondary-color group-hover:bg-black -z-1 group-hover:w-0 transition-all duration-300"></span>
+                <button type="submit" value="submit"
+                    class="relative z-1 px-5 md:px-25px lg:px-10 py-10px md:py-15px lg:py-17px group-hover:text-heading-color leading-1.5 uppercase">
+                    Next Step
+                </button>
+            </h5>
+        </div>
+    </form>
+</div>
+
+{% endblock apply_form %}
