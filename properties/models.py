@@ -71,7 +71,7 @@ class Property(AbstractCreate):
     country = models.CharField(max_length=300, default="South Africa")
     zipcode = models.BigIntegerField(null=True, blank=True)
     map_coordinates = models.CharField(max_length=300, null=True, blank=True)
-    map_url = HTMLField(null=True, blank=True)
+    map_url = models.CharField(max_length=300, null=True, blank=True)
     number_of_rooms = models.IntegerField(default=0)
     room_type = models.CharField(max_length=150, choices=ROOM_TYPES)
     
