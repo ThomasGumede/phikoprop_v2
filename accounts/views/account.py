@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate, get_user_model
 from django.contrib import messages
@@ -14,14 +14,29 @@ User = get_user_model()
 
 @login_required
 def get_account(request, username):
-    user = User.objects.filter(username=username).first()
+    user = get_object_or_404(User, id=request.user.id, username=username)
+    return render(request, "accounts/account.html", {"user": user})
+
+@login_required
+def user_applications(request, username):
+    user = get_object_or_404(User, id=request.user.id, username=username)
+    return render(request, "accounts/manage/user-applications.html", {"user": user})
+
+@login_required
+def update_profile(request, username):
+    user = get_object_or_404(User, id=request.user.id, username=username)
     form = UserForm(instance=user)
     if request.method == "POST":
+        
         form = UserForm(instance=user, data=request.POST, files=request.FILES)
-        if form.is_valid():
-            form.save()
+        
+        if form.is_valid() and form.is_multipart():
+            user_updated = form.save(commit=False)
+            user_updated.save()
             messages.success(request, "Details Updated")
-    return render(request, "accounts/account.html", {"user": user, "form": form})
+        else:
+            messages.error(request, "Something is missing, fix error below")
+    return render(request, "accounts/manage/update-profile.html", {"user": user, "form": form})
 
 @user_not_authenticated
 def custom_login(request):

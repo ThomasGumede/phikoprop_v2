@@ -18,6 +18,9 @@ def about_npi(request):
 def npi_locations(request):
     return render(request, "npi_home/home/location.html")
 
+def comming_soon(request):
+    return render(request, "npi_home/comming-soon.html")
+
 def contact_npi(request):
     if request.method == 'POST':
         form = EmailForm(request.POST)

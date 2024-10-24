@@ -1,5 +1,7 @@
 import os
 from pathlib import Path
+from npi.logging_conf import *
+from decouple import config, Csv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -13,9 +15,7 @@ LOGIN_URL = 'accounts:login'
 SECRET_KEY = 'django-insecure-#f7^1g9ep=awc7tf1$qgm+1zma8w2*1s9p0_vilitqi!u-aq=3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+DEBUG = False
 
 
 # Application definition
@@ -88,11 +88,15 @@ WSGI_APPLICATION = 'npi.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+            'default': {
+                'ENGINE': 'django.db.backends.postgresql',
+                'NAME': "npidb",
+                'USER': config("DB_USER"),
+                'PASSWORD': config("DB_PASSWORD"),
+                'HOST': config("DB_HOST",'localhost'),
+                'PORT': '',
+            }
+        }
 
 
 # Password validation
@@ -152,3 +156,36 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+ADMINS = [('admin@bbgi.co.za'),( 'support@bbgi.co.za'), ('gumedethomas12@gmail.com') ]
+MANAGERS = [('admin@bbgi.co.za'), ('support@bbgi.co.za'), ('gumedethomas12@gmail.com') ]
+
+CSRF_TRUSTED_ORIGINS = ['https://127.0.0.1', 'https://localhost', 'https://phanserv.co.za', 'https://www.phanserv.co.za']
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+X_FRAME_OPTIONS = "SAMEORIGIN"
+SILENCED_SYSTEM_CHECKS = ['security.W019']
+
+if DEBUG:
+    ALLOWED_HOSTS=['*']
+
+else:
+    # SSL SETTINGS
+    
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_HSTS_SECONDS = 31536000
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+
+    # Allowed Hosts
+    ALLOWED_HOSTS = ['phanserv.co.za', 'www.phanserv.co.za', 'localhost', '102.219.85.207']
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'technical@phanserv.co.za'
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = 'noreply@phanserv.co.za'
+

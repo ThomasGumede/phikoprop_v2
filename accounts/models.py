@@ -10,7 +10,7 @@ PHONE_VALIDATOR = verify_rsa_phone()
 
 
 class Account(AbstractUser):
-    profile_image = models.ImageField(help_text=_("Upload profile image"), upload_to=handle_profile_upload, null=True, blank=True)
+    profile_image = models.ImageField(help_text=_("Upload profile image"), upload_to="profile/", null=True, blank=True)
     title = models.CharField(max_length=30, choices=TITLE_CHOICES)
     gender = models.CharField(max_length=30, choices=Gender.choices)
     prefered_name = models.CharField(max_length=300, blank=True, null=True)

@@ -5,7 +5,29 @@ from django.contrib.auth.forms import (AuthenticationForm,  UserCreationForm)
 class UserForm(forms.ModelForm):
     class Meta:
         model = get_user_model()
-        fields = ("first_name", "last_name", "phone", "title", "gender", "biography", "profile_image", "email")
+        fields = ("first_name", "last_name", "phone", "title", "gender", "biography", "profile_image", "email", "address")
+
+    def __init__(self, *args, **kwargs):
+        super(UserForm, self).__init__(*args, **kwargs)
+        for field_name, field_value in self.initial.items():
+            if field_value is None:
+                self.initial[field_name] = ''
+
+    def clean_email(self):
+        email = self.cleaned_data["email"]
+
+        if get_user_model().objects.exclude(pk=self.instance.pk).filter(email=email).exists():
+            raise forms.ValidationError(f'This email: {email} is already in use.')
+        
+        return email
+    
+    def save(self, commit=True):
+        user = super(UserForm, self).save(commit=False)
+        user.email = self.cleaned_data['email']
+        user.username = self.cleaned_data['email']
+        if commit:
+            user.save()
+        return user
 
 class UserLoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):

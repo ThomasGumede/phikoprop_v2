@@ -1,0 +1,145 @@
+{% extends "_account.html" %}
+{% load static %}
+
+
+{% block account_content %}
+
+<div class="transition-all duration-300 ">
+
+    <div>
+        <p class="p-5 bg-section-bg-1 mb-5 lg:mb-6 text-sm lg:text-base"></p>
+        <span class="leading-1.8 lg:leading-1.8">List of all application(s) received.</span>
+        </p>
+    </div>
+    <div class="overflow-x-auto">
+        <table class="text-sm lg:text-base text-heading-color w-full mb-35px table-auto min-w-max">
+            <thead>
+                <tr>
+                    <th class="p-4 border-y border-border-color-17 bg-blue-gray-50/50">
+                        <p
+                            class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                            Property
+                        </p>
+                    </th>
+
+
+                    <th class="p-4 border-y border-border-color-17 bg-blue-gray-50/50">
+                        <p
+                            class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                            Date Submitted
+                        </p>
+                    </th>
+                    <th class="p-4 border-y border-border-color-17 bg-blue-gray-50/50">
+                        <p
+                            class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                            Status
+                        </p>
+                    </th>
+
+
+                    <th class="p-4 border-y border-border-color-17 bg-blue-gray-50/50">
+                        <p
+                            class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                            Applicant
+                        </p>
+                    </th>
+                    <th class="p-4 border-y border-border-color-17 bg-blue-gray-50/50">
+                        <p
+                            class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                        </p>
+                    </th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for application in applications %}
+                <tr>
+                    <td class="p-4 border-b border-blue-gray-50">
+
+                        <a href="{% url 'properties:get-property' application.property.slug %}"
+                            class="flex items-center gap-3">
+
+                            <img src="{% if application.property.cover_image %}{{application.property.cover_image.url}}{% endif %}"
+                                alt="{{listing.title}}"
+                                class="relative inline-block h-12 w-12 !rounded-full bg-custom-primary object-cover object-center" />
+
+                            <p class="block font-sans text-sm antialiased font-bold leading-normal text-blue-gray-900">
+
+
+                                {{application.property.title|truncatewords:4}}
+                            </p>
+                        </a>
+                    </td>
+
+                    <td class="p-4 border-b border-blue-gray-50">
+                        <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                            {{application.created}}
+                        </p>
+                    </td>
+                    <td class="p-4 border-b border-blue-gray-50">
+                        <div class="w-max">
+                            <div
+                                class="relative grid items-center px-2 py-1 font-sans text-xs font-bold {% if application.status == 'APPROVED' %} bg-green-500/20 text-green-900{% elif application.status == 'PENDING' %}bg-amber-500/20 text-amber-900 {% else %}bg-red-500/20 text-red-900{% endif %}  uppercase rounded-md select-none whitespace-nowrap ">
+                                <span class="">{{application.status}}</span>
+                            </div>
+                        </div>
+                    </td>
+
+                    <td class="p-4 border-b border-blue-gray-50">
+                        <div class="flex items-center gap-3">
+                            <a href="" class="w-12 p-1 border rounded-md h-9 border-blue-gray-50">
+                                {% if application.applicant.profile_image %}
+                                <img src="{{application.applicant.profile_image.url}}"
+                                    alt="{{application.applicant.get_full_name}}"
+                                    class="relative inline-block h-full w-full !rounded-none  object-contain object-center p-1" />
+                                {% else %}
+                                <img src="{% static 'images/global/no-image-available.webp' %}"
+                                    alt="{{application.applicant.get_full_name}}"
+                                    class="relative inline-block h-full w-full !rounded-none  object-contain object-center p-1" />
+                                {% endif %}
+                            </a>
+                            <div class="flex flex-col">
+                                <p
+                                    class="block font-sans text-sm antialiased font-normal leading-normal capitalize text-blue-gray-900">
+                                    {{application.applicant.get_full_name}}
+                                </p>
+                                <p
+                                    class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
+                                    {{application.applicant.username}}
+                                </p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="p-4 border-b border-blue-gray-50">
+                        <a href="{% url 'npi_home:comming-soon' %}"
+                            class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-gray-900 transition-all hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                            type="button">
+                            <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                    aria-hidden="true" class="w-4 h-4">
+                                    <path
+                                        d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z">
+                                    </path>
+                                </svg>
+                            </span>
+                        </a>
+
+                        <a href="{% url 'npi_home:comming-soon' %}"
+                            class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-gray-900 transition-all hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                            type="button">
+                            <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+                                <i class="fa-solid fa-trash text-xl"></i>
+                            </span>
+                        </a>
+
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+{% endblock account_content %}

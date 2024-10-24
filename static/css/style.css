@@ -5004,7 +5004,7 @@ input[type="range"]::-ms-thumb {
 
 /* my account */
 
-.account-tab .tab-links .active button {
+.account-tab .tab-links-2 .active button {
   background: var(--section-bg-2);
   color: white;
 }

@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import get_user_model
 from django.contrib import messages
 from properties.models import Application, GuardianTwo, Property, StudentDetails, StudentMedicalDetails, Guardian, AccountHandler, ApplicationDocument
 from properties.forms import GuardianTwoForm, StudentDetailsForm, StudentMedicalDetailsForm, GuardianForm, AccountHandlerForm, ApplicationDocumentForm
@@ -12,6 +13,16 @@ def get_started_with_application(request):
                 messages.info(request, "You have unfinished application, Please complete it and start new application")
                 return redirect("properties:apply-student-details-with-id", property_slug=application.property.slug, application_id=application.id)
     return render(request, "properties/apply/get-started-with-applcation.html", {"properties": properties})
+
+@login_required
+def get_all_applications(request, username):
+    user = get_object_or_404(get_user_model(), username=username)
+    if not user.is_staff or not user.is_superuser:
+        messages.warning(request, "Unauthorized visit, 3 times attempt will have your account deleted")
+        return redirect("npi_home:npi-home")
+
+    applications = Application.objects.all()
+    return render(request, "properties/manage/all-applications.html", {"applications": applications})
 
 @login_required
 def application_student_details(request, property_slug, application_id=None):
